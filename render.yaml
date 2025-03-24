@@ -1,0 +1,13 @@
+# Exported from Render on 2025-03-24T10:43:30Z
+services:
+- type: web
+  name: SuiAutoforge
+  runtime: python
+  repo: https://github.com/DPROM3TH3AN/SuiAutoforge
+  branch: master
+  plan: free
+  region: oregon
+  buildCommand: pip install -r requirements.txt
+  startCommand: cd /opt/render/project/src/SuiAutoforge && uvicorn autoForge.src.main:app
+    --host 0.0.0.0 --port $PORT
+version: "1"
