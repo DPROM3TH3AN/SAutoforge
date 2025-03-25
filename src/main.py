@@ -1,7 +1,7 @@
 import os
 import uvicorn
 from fastapi import FastAPI
-from api import router as api_router
+
 
 app = FastAPI(
     title="SuiAutoforge",
@@ -9,13 +9,14 @@ app = FastAPI(
     version="1.0.0"
 )
 
-app.include_router(api_router, prefix="/api")
 
 @app.get("/")
-async def root():
+def read_root():
     return {"message": "welcome to autoforge"}
 
+from .api import router as api_router
+app.include_router(api_router)
+
 if __name__ == "__main__":
-   host = os.getenv("HOST", "127.0.0.1")
-   port = int(os.getenv("PORT", 8000))
-   uvicorn.run("main:app", host="127.0.0.1", port=8000, reload=True)
+   port = int(os.environ.get("PORT", 8000))
+   uvicorn.run("src.main:app", host="0.0.0.0", port=8000, reload=True)
