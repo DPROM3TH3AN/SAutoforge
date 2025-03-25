@@ -3,18 +3,13 @@ import uvicorn
 from fastapi import FastAPI
 
 
-app = FastAPI(
-    title="SuiAutoforge",
-    description="An API to generate smart contract using GPT",
-    version="1.0.0"
-)
-
+app = FastAPI()
 
 @app.get("/")
 def read_root():
     return {"message": "welcome to autoforge"}
 
-from .api import router as api_router
+from api import router as api_router
 app.include_router(api_router)
 
 if __name__ == "__main__":
