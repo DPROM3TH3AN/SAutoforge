@@ -22,9 +22,10 @@ app.include_router(api_router, prefix="/api")
 @app.get("/")
 async def root():
     return {"message": "Welcome the SuiAutoforge"}
-"""
+
 if __name__ == "__main__":
     import uvicorn
     # Explicitly show imported components
     print("Loaded API Routes:", [route.path for route in app.routes if "api" in route.path])
-    http://uvicorn.run("main:app", host="0.0.0.0", port=8000)"""
+    # Run the Uvicorn server
+    uvicorn.run("main:app", host="0.0.0.0", port=8000)
